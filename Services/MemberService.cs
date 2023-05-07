@@ -22,5 +22,13 @@ namespace Services
                 return memberList;
             else return null;
         }
+
+        public async Task <HmoMember> addMember(HmoMember member)
+        {
+            HmoMember newMember = await _IMemberRepository.addMember(member);
+            if (newMember != null)
+                return newMember;
+            else return null;
+        }
     }
 }

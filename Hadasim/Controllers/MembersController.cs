@@ -27,21 +27,7 @@ namespace Hadasim.Controllers
             else return null;
         }
         
-        
-        
-        
-        //public async Task<ActionResult<UserDTO>> Get(string userName, string password)
-        //{
-        //    User user = await _IUserService.getUser(userName, password);
-        //    UserDTO userDto = _mapper.Map<UserDTO>(user);
-
-
-        //    if (userDto != null)
-        //        return Ok(userDto);
-        //    else return StatusCode(204);
-
-
-        //}
+      
         // GET api/<MembersController>/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -51,8 +37,12 @@ namespace Hadasim.Controllers
 
         // POST api/<MembersController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<HmoMember>> Post([FromBody] HmoMember member)
         {
+            HmoMember newMember = await _IMembersService.addMember(member);
+            if (newMember != null)
+                return newMember;
+            else return null;
         }
 
         // PUT api/<MembersController>/5

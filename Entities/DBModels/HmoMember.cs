@@ -19,31 +19,17 @@ public partial class HmoMember
 
     public int StreetNumber { get; set; }
 
-    public DateOnly DateOfBirth { get; set; }
+    public DateTime DateOfBirth { get; set; }
 
     public string Phone { get; set; } = null!;
 
     public string MobilePone { get; set; } = null!;
 
-    public DateOnly? FirstVaccineDate { get; set; }
+    public DateTime? PositiveResultDate { get; set; }
 
-    public DateOnly? SecondVaccineDate { get; set; }
-
-    public DateOnly? ThirdVaccineDate { get; set; }
-
-    public DateOnly? FourthVaccineDate { get; set; }
-
-    public string? FirstVaccineManufacturer { get; set; }
-
-    public string? SecondVaccineManufacturer { get; set; }
-
-    public string? ThirdVaccineManufacturer { get; set; }
-
-    public string? FourthVaccineManufacturer { get; set; }
-
-    public DateOnly? PositiveResultDate { get; set; }
-
-    public DateOnly? DiseaseRecoveryDate { get; set; }
+    public DateTime? DiseaseRecoveryDate { get; set; }
 
     public string? ImgUrl { get; set; }
+
+    public virtual ICollection<Vaccination> Vaccinations { get; set; } = new List<Vaccination>();
 }

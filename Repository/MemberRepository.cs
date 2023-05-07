@@ -23,5 +23,12 @@ namespace Repository
             IEnumerable<HmoMember> memberList = await _HadasimContext.HmoMembers.ToListAsync();
             return memberList;
         }
+
+        public async Task<HmoMember> addMember(HmoMember member)
+        {
+            await _HadasimContext.AddAsync(member);
+            await _HadasimContext.SaveChangesAsync();
+            return member;
+        }
     }
 }

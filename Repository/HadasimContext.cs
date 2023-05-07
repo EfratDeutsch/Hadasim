@@ -17,8 +17,6 @@ public partial class HadasimContext : DbContext
 
     public virtual DbSet<HmoMember> HmoMembers { get; set; }
 
-    public virtual DbSet<MembersVaccinnation> MembersVaccinnations { get; set; }
-
     public virtual DbSet<Vaccination> Vaccinations { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -37,18 +35,15 @@ public partial class HadasimContext : DbContext
             entity.Property(e => e.City)
                 .HasMaxLength(50)
                 .HasColumnName("city");
-            entity.Property(e => e.DateOfBirth).HasColumnName("dateOfBirth");
+            entity.Property(e => e.DateOfBirth)
+                .HasColumnType("datetime")
+                .HasColumnName("dateOfBirth");
+            entity.Property(e => e.DiseaseRecoveryDate)
+                .HasColumnType("datetime")
+                .HasColumnName("diseaseRecoveryDate");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(50)
                 .HasColumnName("firstName");
-            entity.Property(e => e.FirstVaccineDate).HasColumnName("firstVaccineDate");
-            entity.Property(e => e.FirstVaccineManufacturer)
-                .HasMaxLength(50)
-                .HasColumnName("firstVaccineManufacturer");
-            entity.Property(e => e.FourthVaccineDate).HasColumnName("fourthVaccineDate");
-            entity.Property(e => e.FourthVaccineManufacturer)
-                .HasMaxLength(50)
-                .HasColumnName("fourthVaccineManufacturer");
             entity.Property(e => e.IdentityNumber)
                 .HasMaxLength(50)
                 .HasColumnName("identityNumber");
@@ -64,32 +59,13 @@ public partial class HadasimContext : DbContext
             entity.Property(e => e.Phone)
                 .HasMaxLength(50)
                 .HasColumnName("phone");
-            entity.Property(e => e.PositiveResultDate).HasColumnName("positiveResultDate");
-            entity.Property(e => e.SecondVaccineDate).HasColumnName("secondVaccineDate");
-            entity.Property(e => e.SecondVaccineManufacturer)
-                .HasMaxLength(50)
-                .HasColumnName("secondVaccineManufacturer");
+            entity.Property(e => e.PositiveResultDate)
+                .HasColumnType("datetime")
+                .HasColumnName("positiveResultDate");
             entity.Property(e => e.Street)
                 .HasMaxLength(50)
                 .HasColumnName("street");
             entity.Property(e => e.StreetNumber).HasColumnName("streetNumber");
-            entity.Property(e => e.ThirdVaccineDate).HasColumnName("thirdVaccineDate");
-            entity.Property(e => e.ThirdVaccineManufacturer)
-                .HasMaxLength(50)
-                .HasColumnName("thirdVaccineManufacturer");
-        });
-
-        modelBuilder.Entity<MembersVaccinnation>(entity =>
-        {
-            entity.ToTable("MEMBERS_VACCINNATIONS");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.IsFirstVaccinId).HasColumnName("isFirstVaccinId");
-            entity.Property(e => e.IsFourthVaccinId).HasColumnName("isFourthVaccinId");
-            entity.Property(e => e.IsSecondVaccinId).HasColumnName("isSecondVaccinId");
-            entity.Property(e => e.IsThirdVaccinId).HasColumnName("isThirdVaccinId");
-            entity.Property(e => e.NumbersOfVaccin).HasColumnName("numbersOfVaccin");
-            entity.Property(e => e.UserId).HasColumnName("userId");
         });
 
         modelBuilder.Entity<Vaccination>(entity =>
@@ -99,9 +75,20 @@ public partial class HadasimContext : DbContext
             entity.ToTable("VACCINATIONS");
 
             entity.Property(e => e.VaccinId).HasColumnName("vaccinId");
+            entity.Property(e => e.IdentityNumber)
+                .HasMaxLength(50)
+                .HasColumnName("identityNumber");
             entity.Property(e => e.Manufacturer)
                 .HasMaxLength(50)
                 .HasColumnName("manufacturer");
+            entity.Property(e => e.UserId).HasColumnName("userId");
+            entity.Property(e => e.VaccinDate).HasColumnName("vaccinDate");
+            entity.Property(e => e.VaccinNum).HasColumnName("vaccinNum");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Vaccinations)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__VACCINATI__userI__3E52440B");
         });
 
         OnModelCreatingPartial(modelBuilder);
