@@ -60,6 +60,16 @@ namespace Hadasim.Controllers
             else return null;
 
         }
+        // GET api/<MembersController>/5
+        [HttpGet("{date}/getNumOfActivePatientsForSpecificDay")]
+
+        public async Task <ActionResult<int>> getNumOfActivePatientsForSpecificDay(DateTime date)
+        {
+            int num = await _IMembersService.getNumOfActivePatientsForSpecificDay(date);
+                if (num != null)
+                return num;
+            else return null;
+        }
 
         // POST api/<MembersController>
         [HttpPost]

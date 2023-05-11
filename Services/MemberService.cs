@@ -42,6 +42,11 @@ namespace Services
                 return dic;
             else return null;
         }
+        public async Task <int> getNumOfActivePatientsForSpecificDay(DateTime date)
+        {
+            int num = await _IMemberRepository.getNumOfActivePatientsForSpecificDay(date);
+            return num;
+        }
         public async Task <HmoMember> addMember(HmoMember member)
         {
             HmoMember newMember = await _IMemberRepository.addMember(member);

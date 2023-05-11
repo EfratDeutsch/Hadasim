@@ -19,4 +19,3 @@ public partial class MembersVaccinnation
 
     public int? NumbersOfVaccin { get; set; }
 }
-//ghjghjghj

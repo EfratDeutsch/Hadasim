@@ -77,6 +77,14 @@ namespace Repository
             var result = firstThursday.AddDays(weekNum * 7);
             return result.AddDays(-3);
         }
+        public async Task <int> getNumOfActivePatientsForSpecificDay(DateTime date)
+        {
+            var activePatientsCount = _HadasimContext.HmoMembers
+         .Count(member => member.PositiveResultDate.HasValue &&
+                         member.PositiveResultDate >= date.AddDays(-14));
+
+            return activePatientsCount;
+        }
         public async Task<HmoMember> addMember(HmoMember member)
         {
             await _HadasimContext.AddAsync(member);
