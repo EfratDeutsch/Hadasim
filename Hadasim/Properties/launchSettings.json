@@ -1,23 +1,23 @@
-﻿{
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:2797",
-      "sslPort": 44302
+      "applicationUrl": "http://localhost:60692/",
+      "sslPort": 44384
     }
   },
   "profiles": {
     "Hadasim": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7008;http://localhost:5008",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:7008;http://localhost:5008",
+      "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",
