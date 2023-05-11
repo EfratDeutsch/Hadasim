@@ -13,6 +13,8 @@ This project is a system designed to manage a health insurance fund during the C
 - Entity Framework (version 6.0): ORM (Object-Relational Mapping) framework used for data access and management, and the layer model.
 - SQL Server (version 18.12.1): Database server used to store and manage the system's data.
 - Dependency Injection framework: used to manage dependencies between different components of the system and enable loose coupling between them.
+- Middleware: used to handle requests and responses between the client and server, and perform various tasks such as authentication and logging.
+- Logger: used to record system events and errors for debugging and analysis purposes
 
 ## Layers
 The project was done in the layer architecture - 4 layers:
