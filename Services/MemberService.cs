@@ -22,7 +22,26 @@ namespace Services
                 return memberList;
             else return null;
         }
+        public async Task<HmoMember> getMemberBYId(string id)
+        {
+            HmoMember member = await _IMemberRepository.getMemberBYId(id);
+            if (member != null)
+                return member;
+            else return null;
+        }
 
+        public async Task <int> getNumOfNotImmuneMembers()
+        {
+            int numOfNotImmuneMembers = await _IMemberRepository.getNumOfNotImmuneMembers();
+            return numOfNotImmuneMembers;
+        }
+        public async Task <Dictionary<DateTime,int>> getNumOfActivePatients()
+        {
+            Dictionary<DateTime, int> dic = await _IMemberRepository.getNumOfActivePatients();
+            if (dic != null)
+                return dic;
+            else return null;
+        }
         public async Task <HmoMember> addMember(HmoMember member)
         {
             HmoMember newMember = await _IMemberRepository.addMember(member);
@@ -30,5 +49,6 @@ namespace Services
                 return newMember;
             else return null;
         }
+       
     }
 }

@@ -82,7 +82,9 @@ public partial class HadasimContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("manufacturer");
             entity.Property(e => e.UserId).HasColumnName("userId");
-            entity.Property(e => e.VaccinDate).HasColumnName("vaccinDate");
+            entity.Property(e => e.VaccinDate)
+                .HasColumnType("datetime")
+                .HasColumnName("vaccinDate");
             entity.Property(e => e.VaccinNum).HasColumnName("vaccinNum");
 
             entity.HasOne(d => d.User).WithMany(p => p.Vaccinations)
